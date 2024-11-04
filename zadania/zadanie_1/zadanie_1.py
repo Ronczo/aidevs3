@@ -1,3 +1,3 @@
-import requests
+from conf import API_KEY
 
-r = requests.get()
+print(API_KEY)
