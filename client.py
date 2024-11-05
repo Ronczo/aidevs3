@@ -10,7 +10,7 @@ class OpenAIClient:
         "Authorization": f"Bearer {API_KEY}",
     }
 
-    def __init__(self, model, messages, max_tokens):
+    def __init__(self, model, messages, max_tokens=100):
         self.model = model
         self.messages = messages
         self.max_tokens = max_tokens

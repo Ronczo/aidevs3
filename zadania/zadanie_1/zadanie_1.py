@@ -7,7 +7,6 @@ LOGIN = "tester"
 PASSWORD = "574e112a"
 URL = "https://xyz.ag3nts.org/"
 
-
 website_response = requests.get(URL)
 content = website_response.content
 content_str = content.decode("utf-8")
@@ -21,12 +20,13 @@ messages = [
         "content": f"There is my question in Polish: {question}. Answer it as number",
     },
 ]
-data = {"model": "gpt-4o-mini", "messages": messages, "max_tokens": 100}
 
-client = OpenAIClient("gpt-4o-mini", messages, 100)
+client = OpenAIClient("gpt-4o-mini", messages)
 response = client.get_response()
 answer_year = response.json()["choices"][0]["message"]["content"]
 login_response = requests.post(
     URL,
     data={"username": LOGIN, "password": PASSWORD, "answer": answer_year},
 )
+
+print(login_response.content)
