@@ -23,7 +23,7 @@ messages = [
 
 client = OpenAIClient("gpt-4o-mini")
 response = client.get_response(messages)
-answer_year = response.json()["choices"][0]["message"]["content"]
+answer_year = client.get_response_content(response)
 login_response = requests.post(
     URL,
     data={"username": LOGIN, "password": PASSWORD, "answer": answer_year},

@@ -24,7 +24,7 @@ messages = [
 ]
 client = OpenAIClient("gpt-4o")
 response = client.get_response(messages)
-answer = response.json()["choices"][0]["message"]["content"]
+answer = client.get_response_content(response)
 second_response = requests.post(
     verification_url,
     json={"msgID": message_id, "text": answer},
