@@ -25,8 +25,3 @@ class OpenAIClient:
     def model_setter(self, model):
         self.model = model
 
-    def messages_setter(self, messages):
-        self.messages = messages
-
-    def max_tokens_setter(self, max_tokens):
-        self.max_tokens = max_tokens
