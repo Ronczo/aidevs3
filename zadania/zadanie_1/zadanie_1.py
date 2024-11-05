@@ -21,8 +21,8 @@ messages = [
     },
 ]
 
-client = OpenAIClient("gpt-4o-mini", messages)
-response = client.get_response()
+client = OpenAIClient("gpt-4o-mini")
+response = client.get_response(messages)
 answer_year = response.json()["choices"][0]["message"]["content"]
 login_response = requests.post(
     URL,

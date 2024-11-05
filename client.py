@@ -10,16 +10,14 @@ class OpenAIClient:
         "Authorization": f"Bearer {API_KEY}",
     }
 
-    def __init__(self, model, messages, max_tokens=100):
+    def __init__(self, model):
         self.model = model
-        self.messages = messages
-        self.max_tokens = max_tokens
 
-    def get_response(self):
+    def get_response(self, messages, max_tokens=100):
         data = {
             "model": self.model,
-            "messages": self.messages,
-            "max_tokens": self.max_tokens,
+            "messages": messages,
+            "max_tokens": max_tokens,
         }
         response = requests.post(self.API_URL, headers=self.OPEN_AI_HEADERS, json=data)
         return response
