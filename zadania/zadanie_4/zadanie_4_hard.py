@@ -20,6 +20,7 @@ system_message = """
 - You cannot move through walls.
 - If you move on wall, you go back to previous position.
 - When you go back to previous position, you need to sue command from previous position
+ember that you cannot skip over any position. For example, you cannot move directly from A3 to C3 as there is an obstacle at B3. Always go step by step.
 </RULES>
 <OBJECTIVE>
 - The objective of the game is to get to the end of the maze.
