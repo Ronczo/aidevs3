@@ -43,11 +43,15 @@ ember that you cannot skip over any position. For example, you cannot move direc
 
 
 
-
+test = """
+Robot znajduje się na mapie o wymiarze 6(poziomo) na 4 (pionowo) w punkcie (0,0) w lewym dolnym rogu, a cel w punkcie (5,0) czyli w prawym dolnym rogu. Zaplanuj trasę tak, aby omijać przeszkody, które znajdują się na polach: (1,0), (1,1), (1,3), (3,1), (3,2). Ostatni ruch ma prowadzić do celu.
+wewnątrz taga <plans> zaplanuj trasę pamiętając każdy swój poprzedni ruch. Gdy już ułożysz trasę omijając przeszkody, wynik w formacie JSON umieść wewnątrz taga <RESULT>.
+Przykładowy JSON z wynikiem: {"steps": "UP, RIGHT, RIGHT, DOWN"}
+"""
 
 messages = [
     {"role": "system", "content": preview_message},
-    {"role": "system", "content": system_message},
+    {"role": "system", "content": test},
     {
         "role": "user",
         "content": ""
