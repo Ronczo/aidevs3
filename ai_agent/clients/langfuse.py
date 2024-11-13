@@ -1,8 +1,6 @@
 from langfuse import Langfuse
 
 
-from langfuse.decorators import langfuse_context
-
 from settings import LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY, LANGFUSE_HOST
 
 

@@ -1,7 +1,6 @@
 import uuid
 
 from fastapi import APIRouter, Depends
-
 from api.deps import get_openai_client
 from clients.openai import OpenAIClient
 from schemas.context import Context
@@ -23,4 +22,5 @@ def chat(prompt: Prompt, open_ai: OpenAIClient = Depends(get_openai_client)):
     context = Context(user_id=prompt.user_id, session_id=session_id)
     response = open_ai.chat(messages, context=context)
     content = open_ai.get_content(response)
+
     return content
