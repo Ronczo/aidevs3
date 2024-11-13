@@ -1,10 +1,11 @@
 import os
-from fastapi import Request, HTTPException, status
+from fastapi import Request, status
 from fastapi.responses import JSONResponse
 from fastapi import FastAPI
-from dotenv import load_dotenv
 
-from endpoints import router
+import openai
+from api.endpoints import router
+from settings import API_KEY, SECRET_TOKEN
 
 app = FastAPI()
 
@@ -30,9 +31,6 @@ async def check_token(request: Request, call_next):
 
 app.include_router(router)
 
-load_dotenv()
-
-API_KEY = os.getenv("OPEN_AI_API_KEY")
-AGENT_KEY = os.getenv("AGENT_KEY")
-SECRET_TOKEN = os.getenv("SECRET_TOKEN")
+# SET OPENAI API KEY
+openai.api = API_KEY
 

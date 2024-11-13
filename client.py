@@ -1,9 +1,9 @@
-from conf import API_KEY as OPEN_AI_API_KEY, OPEN_AI_API_URL
+from conf import API_KEY as OPENAI_API_KEY, OPEN_AI_API_URL
 import requests
 
 
 class OpenAIClient:
-    API_KEY = OPEN_AI_API_KEY
+    API_KEY = OPENAI_API_KEY
     API_URL = OPEN_AI_API_URL
     OPEN_AI_HEADERS = {
         "Content-Type": "application/json",
