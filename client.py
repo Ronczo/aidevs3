@@ -28,4 +28,3 @@ class OpenAIClient:
 
     def model_setter(self, model):
         self.model = model
-

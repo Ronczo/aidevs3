@@ -22,4 +22,3 @@ QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 ELEVEN_LABS_API_KEY = os.getenv("ELEVEN_LABS_API_KEY")
-

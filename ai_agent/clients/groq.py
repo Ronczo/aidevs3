@@ -19,4 +19,3 @@ class GroqClient:
                 # temperature=0.0  # Optional
             )
             return transcription.text
-

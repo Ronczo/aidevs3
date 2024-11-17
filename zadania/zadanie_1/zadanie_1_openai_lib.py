@@ -21,9 +21,6 @@ messages = [
         "content": f"There is my question in Polish: {question}. Answer must be a number, Ignore other words. I need a number",
     },
 ]
-response = openai.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=messages
-)
+response = openai.chat.completions.create(model="gpt-4o-mini", messages=messages)
 
 print(response.choices[0].message.content)

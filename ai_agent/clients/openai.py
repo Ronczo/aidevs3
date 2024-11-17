@@ -21,10 +21,7 @@ class OpenAIClient:
                 user_id=context.user_id,
             )
         return self.client.chat.completions.create(
-            model=self.model,
-            messages=messages,
-            temperature=1,
-            max_tokens=400
+            model=self.model, messages=messages, temperature=1, max_tokens=400
         )
 
     def prepare_message_with_local_image(self, message: dict, image_url: str):

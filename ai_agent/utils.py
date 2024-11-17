@@ -1,6 +1,7 @@
 import sounddevice as sd
 from scipy.io.wavfile import write
 
+
 def record_audio():
     sd.default.device = 0
     frequency = 44100
@@ -14,7 +15,6 @@ def record_audio():
     write("nagranie.wav", frequency, recording)
 
     print("Nagrywanie zakończone i zapisane do pliku 'nagranie.wav'")
-
 
 
 print(sd.query_devices())

@@ -10,7 +10,12 @@ from settings import AGENT_KEY
 from bs4 import BeautifulSoup
 import os
 
-from zadania.zadanie_10.prompts import IMG_PROMPT_10, MP3_PROMPT_10, CONTENT_PROMPT_10, GENERAL_PROMPT_10
+from zadania.zadanie_10.prompts import (
+    IMG_PROMPT_10,
+    MP3_PROMPT_10,
+    CONTENT_PROMPT_10,
+    GENERAL_PROMPT_10,
+)
 
 
 def encode_image(image_path):
@@ -19,15 +24,15 @@ def encode_image(image_path):
 
 
 def download_mp3_file(parsed_content):
-    audio_tag = parsed_content.find('audio')
+    audio_tag = parsed_content.find("audio")
     if audio_tag:
-        source_tag = audio_tag.find('source')
-        if source_tag and 'src' in source_tag.attrs:
-            mp3_url = source_tag['src']
+        source_tag = audio_tag.find("source")
+        if source_tag and "src" in source_tag.attrs:
+            mp3_url = source_tag["src"]
             mp3_url = f"https://centrala.ag3nts.org/dane/{mp3_url}"
             response = requests.get(mp3_url, stream=True)
             if response.status_code == 200:
-                with open('files/downloaded_file.mp3', 'wb') as file:
+                with open("files/downloaded_file.mp3", "wb") as file:
                     for chunk in response.iter_content(chunk_size=1024):
                         file.write(chunk)
                 print("Plik został pobrany i zapisany jako 'downloaded_file.mp3'")
@@ -35,31 +40,33 @@ def download_mp3_file(parsed_content):
         else:
             return None
 
+
 def download_images(soup):
     images_with_description = {}
     figures = soup.find_all("figure")
     for i, figure in enumerate(figures, start=1):
         description = figure.find("figcaption").text
-        img_src = figure.find("img")['src']
+        img_src = figure.find("img")["src"]
         url = f"https://centrala.ag3nts.org/dane/{img_src}"
         img_response = requests.get(url)
         img_path = os.path.join("", f"{i}.jpg")
-        with open(f"files/{img_path}", 'wb') as file:
+        with open(f"files/{img_path}", "wb") as file:
             file.write(img_response.content)
         images_with_description[img_path] = description
         print(f"Pobrano: {img_path}")
     return images_with_description
 
+
 groq_client = GroqClient()
 open_ai = OpenAIClient(model="gpt-4o")
-ARTICLE_URL = 'https://centrala.ag3nts.org/dane/arxiv-draft.html'
-FILES_DIRECTORY = 'files'
+ARTICLE_URL = "https://centrala.ag3nts.org/dane/arxiv-draft.html"
+FILES_DIRECTORY = "files"
 QUESTIONS_URL = f"https://centrala.ag3nts.org/data/{AGENT_KEY}/arxiv.txt"
 questions_dict = {}
-questions = requests.get(QUESTIONS_URL).content.decode('utf-8')
+questions = requests.get(QUESTIONS_URL).content.decode("utf-8")
 
-article = requests.get(ARTICLE_URL).content.decode('utf-8')
-soup = BeautifulSoup(article, 'html.parser')
+article = requests.get(ARTICLE_URL).content.decode("utf-8")
+soup = BeautifulSoup(article, "html.parser")
 download_mp3_file(soup)
 images = download_images(soup)
 container = soup.find("div", class_="container")
@@ -85,7 +92,9 @@ for file in os.listdir(FILES_DIRECTORY):
         description = images.get(file)
         image_prompt = IMG_PROMPT_10.format(description=description)
         message = open_ai.prepare_message_with_image_url(
-            f"data:image/jpeg;base64,{encode_image(os.path.join(FILES_DIRECTORY, file))}", image_prompt, role="user"
+            f"data:image/jpeg;base64,{encode_image(os.path.join(FILES_DIRECTORY, file))}",
+            image_prompt,
+            role="user",
         )
         files_messages.append(message)
 
@@ -94,12 +103,9 @@ content_message = open_ai.prepare_message(prompt_content, role="user")
 files_messages.append(content_message)
 
 
-
-
-
-for q in questions.split('\n'):
+for q in questions.split("\n"):
     if q:
-        id_, question = q.split('=')
+        id_, question = q.split("=")
         questions_dict[id_.strip()] = question.strip()
 
 

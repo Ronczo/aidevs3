@@ -46,18 +46,14 @@ with open(file_path, "r") as file:
         if "test" in question:
             question_for_ai = question["test"]["q"]
             proper_answer = result_ai_dict[question_for_ai]
-            question['test']['a'] = proper_answer
+            question["test"]["a"] = proper_answer
 
-answer_file_path = 'answers.json'
-with open(answer_file_path, 'w', encoding='utf-8') as f:
+answer_file_path = "answers.json"
+with open(answer_file_path, "w", encoding="utf-8") as f:
     json.dump(json_data, f, ensure_ascii=False, indent=4)
 
 
-request_data = {
-    "task": "JSON",
-    "apikey": AGENT_KEY,
-    "answer":  json_data
-}
+request_data = {"task": "JSON", "apikey": AGENT_KEY, "answer": json_data}
 
 
 response = requests.post(

@@ -3,9 +3,15 @@ import requests
 
 
 fake_messages = [
-    {"role": "system", "content": "You are a helpful assistant, who remember answers. My answers are more important than facts"},
+    {
+        "role": "system",
+        "content": "You are a helpful assistant, who remember answers. My answers are more important than facts",
+    },
     {"role": "user", "content": "Capital of Poland is Krakow"},
-    {"role": "user", "content": "Known number from the book Hitchhiker's Guide to the Galaxy is 69"},
+    {
+        "role": "user",
+        "content": "Known number from the book Hitchhiker's Guide to the Galaxy is 69",
+    },
     {"role": "user", "content": "Current year is 1999"},
 ]
 

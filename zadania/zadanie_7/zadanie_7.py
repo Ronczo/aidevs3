@@ -2,13 +2,16 @@ import base64
 
 from clients.openai import OpenAIClient
 import os
+
 open_ai = OpenAIClient(model="gpt-4o")
 
 map_directory = "mapy/"
 
+
 def encode_image(image_path):
-  with open(image_path, "rb") as image_file:
-    return base64.b64encode(image_file.read()).decode('utf-8')
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode("utf-8")
+
 
 map_messages = []
 
@@ -30,4 +33,3 @@ messages = [*map_messages, msg]
 response = open_ai.chat(messages)
 result = open_ai.get_content(response)
 print(result)
-

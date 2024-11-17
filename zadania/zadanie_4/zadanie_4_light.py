@@ -19,7 +19,7 @@ messages = [
     {"role": "system", "content": system_message},
     {
         "role": "user",
-        "content": "There are following commands: UP UP RIGHT RIGHT DOWN DOWN RIGHT RIGHT RIGHT. With given example give me the answer"
+        "content": "There are following commands: UP UP RIGHT RIGHT DOWN DOWN RIGHT RIGHT RIGHT. With given example give me the answer",
     },
 ]
 
