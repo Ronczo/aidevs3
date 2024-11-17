@@ -165,3 +165,9 @@ cython_debug/
 *.m4a
 *.mp3
 /zadania/*/*.txt
+*.png
+*.jpeg
+*.jpg
+*.txt
+2024-11-12_report-99
+*.zip

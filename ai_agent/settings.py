@@ -9,6 +9,7 @@ AGENT_KEY = os.getenv("AGENT_KEY")
 SECRET_TOKEN = os.getenv("SECRET_TOKEN")
 # OpenAI
 API_KEY = os.getenv("OPENAI_API_KEY")
+OPEN_AI_API_URL = "https://api.openai.com/v1/chat/completions"
 # Langfuse
 
 LANGFUSE_SECRET_KEY = os.getenv("LANGFUSE_SECRET_KEY")
