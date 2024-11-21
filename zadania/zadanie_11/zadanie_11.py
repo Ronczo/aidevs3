@@ -15,10 +15,10 @@ system_message = open_ai.prepare_message(SYSTEM_PROMPT, role="system")
 about_who = {}
 
 for file_name in os.listdir(FACTS_DIRECTORY):
-    if not file_name.endswith('.txt'):
+    if not file_name.endswith(".txt"):
         continue
     file_path = os.path.join(FACTS_DIRECTORY, file_name)
-    with open(file_path, 'r', encoding='utf-8') as file:
+    with open(file_path, "r", encoding="utf-8") as file:
         content = file.read()
     if "entry deleted" in content:
         continue
@@ -29,7 +29,6 @@ for file_name in os.listdir(FACTS_DIRECTORY):
 print(about_who.keys())
 
 
-
 answer = {}
 # facts_message = open_ai.prepare_message(FACTS_PROMPT.format(note=facts_all))
 
@@ -37,7 +36,7 @@ answer = {}
 for file_name in os.listdir(FILES_DIRECTORY):
     if file_name.endswith("txt"):
         file_path = os.path.join(FILES_DIRECTORY, file_name)
-        with open(file_path, 'r', encoding='utf-8') as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             content = file.read()
         about_who_prompt = ABOUT_WHO_PROMPT.format(note=content)
         about_who_message = open_ai.prepare_message(about_who_prompt)

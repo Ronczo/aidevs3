@@ -5,7 +5,7 @@ from clients.qdrant import QdrantClient
 from settings import AGENT_KEY
 import os
 from qdrant_client.http.models import VectorParams
-from zadania.zadanie_12.prompts import TAG_PROMPT, TAG_SYSTEM_PROMPT, DATE_PROMPT
+from zadania.zadanie_12.prompts import TAG_PROMPT, TAG_SYSTEM_PROMPT
 
 
 FILES_DIRECTORY = "pliki/"
@@ -46,11 +46,13 @@ open_ai = OpenAIClient(model="gpt-4o", embedding_model="text-embedding-3-large")
 #     }
 #     qdrant.add_embedding(vector, vector_meta_data)
 
-QUESTION = "W raporcie, z którego dnia znajduje się wzmianka o kradzieży prototypu broni?"
+QUESTION = (
+    "W raporcie, z którego dnia znajduje się wzmianka o kradzieży prototypu broni?"
+)
 question_response = open_ai.generate_embedding(QUESTION)
 question_vector = open_ai.get_vector_from_embedding(question_response)
 result = qdrant.search_results(question_vector, limit=1)
-answer = result[0].payload['date']
+answer = result[0].payload["date"]
 print(result)
 answer_data = {"task": "wektory", "apikey": AGENT_KEY, "answer": answer}
 response = requests.post(

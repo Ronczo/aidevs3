@@ -54,7 +54,6 @@ As output I need only string with tags separated by commas.
 #
 
 
-
 NOTES_PROMPT = """
 Here is content of the note. Analyze this note and generate tags.
 The note: {note}
