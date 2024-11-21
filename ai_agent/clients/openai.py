@@ -7,10 +7,28 @@ OPENAI_MODELS = {"4o-mini": "gpt-4o-mini", "4o": "gpt-4o", "4o-large": "gpt-4o-l
 
 
 class OpenAIClient:
-    def __init__(self, client=openai, model: str = OPENAI_MODELS["4o-mini"]):
+    def __init__(
+        self,
+        client=openai,
+        model: str = OPENAI_MODELS["4o-mini"],
+        embedding_model: str = None,
+    ):
         self.client = client
         self.model = model
+        self.embedding_model = embedding_model
         self.langfuse = LangfuseClient()
+
+    def generate_embedding(self, text: str):
+        if not self.embedding_model:
+            raise ValueError("Embedding model is not set")
+        return self.client.embeddings.create(input=text, model=self.embedding_model)
+
+    def get_vector_from_embedding(self, response) -> list[float] | None:
+        try:
+            vector = response.data[0].embedding
+        except Exception:
+            vector = None
+        return vector
 
     @observe
     def chat(self, messages: [list[dict]], context: Context | None = None):
@@ -80,3 +98,6 @@ class OpenAIClient:
 
     def set_model(self, model: str):
         self.model = model
+
+    def set_embedding_model(self, model: str):
+        self.set_embedding_model = model
