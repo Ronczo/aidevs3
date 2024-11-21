@@ -56,14 +56,14 @@ As output I need only string with tags separated by commas.
 
 
 NOTES_PROMPT = """
-Here is content of the note. Analyze this note. 
+Here is content of the note. Analyze this note and generate tags.
 The note: {note}
 
-Here is additional info. Analyze it and look for information related with the note. 
-Include this information when you generate tags
-Additional info: {additional}
 
 First analyze the note and additional info, then generate the tags
+
+I am adding also file name. Generate tags from file name too
+File name: {file_name}
 """
 
 
