@@ -171,3 +171,5 @@ cython_debug/
 *.txt
 2024-11-12_report-99
 *.zip
+
+*.jsonl
